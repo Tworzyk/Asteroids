@@ -1,0 +1,6 @@
+pyproject.toml
+uv.lock
+game_state.jsonl
+__pycache__
+.venv
+.python-version
