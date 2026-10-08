@@ -4,11 +4,11 @@ from constans import LINE_WIDTH,PLAYER_TURN_SPEED,PLAYER_SPEED
 import pygame
 class Player(CircleShape):
     
-    rotation: float = 0
+    
     
     def __init__(self, pos_x: float, pos_y: float,Player_Radius: float):
         super().__init__(pos_x,pos_y,Player_Radius)
-        
+        self.rotation: float = 0
 
     def triangle(self) -> list[pygame.Vector2]:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -23,7 +23,7 @@ class Player(CircleShape):
         pygame.draw.polygon(screen,"white",self.triangle(),LINE_WIDTH)
         
     def rotate(self,dt: float) -> None:
-        self.rotation = PLAYER_TURN_SPEED * dt
+        self.rotation += PLAYER_TURN_SPEED * dt
         
     def update(self, dt: float) -> None:
         keys = pygame.key.get_pressed()
