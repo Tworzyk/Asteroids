@@ -4,3 +4,4 @@ game_state.jsonl
 __pycache__
 .venv
 .python-version
+game_events.jsnol
