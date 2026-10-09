@@ -9,7 +9,7 @@ class Shot(CircleShape):
 
 
     def update(self, dt: float) -> None:
-        self.postion += self.velocity *dt
+        self.position += self.velocity *dt
 
     def draw(self,surface: pygame) -> None:
         pygame.draw.circle(
