@@ -1,15 +1,17 @@
 from circleshape import CircleShape
 from constans import LINE_WIDTH,PLAYER_TURN_SPEED,PLAYER_SPEED,PLAYER_SHOOT_COOLDOWN_SECONDS
 from shoot import Shot
+from lifes import Life
 import pygame
 class Player(CircleShape):
     
     
     
-    def __init__(self, pos_x: float, pos_y: float,Player_Radius: float) -> None:
+    def __init__(self, pos_x: float, pos_y: float,Player_Radius: float, lifes: Life) -> None:
         super().__init__(pos_x,pos_y,Player_Radius)
         self.rotation: float = 0
         self.shoot_cooldown_timer = 0
+        self.life = lifes
 
     def triangle(self) -> list[pygame.Vector2]:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)

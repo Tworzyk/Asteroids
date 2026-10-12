@@ -51,10 +51,12 @@ def main():
         updatable.update(dt)
         
         for asteroid in asteroids:
-            if asteroid.collides_with(player):
+            if asteroid.collides_with(player) and player.life.lifes < 1:
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit(1)
+            else:
+                player.life.removelife()
                 
             for shot in shots:
                 if asteroid.collides_with(shot):
@@ -71,8 +73,11 @@ def main():
     
 
         score_text = font.render(f"Points: {point.points}", True, "white")
+        life_text = font.render(f"Lives: {player.life.lifes}")
+        life_rect = score_text.get_rect(topright=(SCREEN_WIDTH - 20, 40))
         text_rect = score_text.get_rect(topright=(SCREEN_WIDTH - 20, 20))
         screen.blit(score_text, text_rect)
+        screen.blit(life_text,life_rect)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
     
