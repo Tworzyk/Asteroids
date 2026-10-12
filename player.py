@@ -7,11 +7,11 @@ class Player(CircleShape):
     
     
     
-    def __init__(self, pos_x: float, pos_y: float,Player_Radius: float, lifes: Life) -> None:
+    def __init__(self, pos_x: float, pos_y: float,Player_Radius: float, number_Of_Lives: int) -> None:
         super().__init__(pos_x,pos_y,Player_Radius)
         self.rotation: float = 0
         self.shoot_cooldown_timer = 0
-        self.life = lifes
+        self.life = Life(number_Of_Lives)
 
     def triangle(self) -> list[pygame.Vector2]:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)

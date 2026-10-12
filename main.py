@@ -36,7 +36,7 @@ def main():
 
     x = SCREEN_WIDTH/2
     y = SCREEN_HEIGHT/2
-    player = Player(x,y,PLAYER_RADIUS)
+    player = Player(x,y,PLAYER_RADIUS,3)
     
     
     while True:
