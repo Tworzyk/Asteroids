@@ -1,6 +1,6 @@
 import pygame
 import sys
-from constans import SCREEN_WIDTH,SCREEN_HEIGHT,PLAYER_RADIUS
+from constans import SCREEN_WIDTH,SCREEN_HEIGHT,PLAYER_RADIUS,HEALTH,NEXT_LIFE_SCORE
 from logger import log_state,log_event
 from player import Player
 from Asteroid import Asteroid
@@ -36,7 +36,7 @@ def main():
 
     x = SCREEN_WIDTH/2
     y = SCREEN_HEIGHT/2
-    player = Player(x,y,PLAYER_RADIUS,3)
+    player = Player(x,y,PLAYER_RADIUS,HEALTH)
     
     
     while True:
@@ -55,8 +55,10 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit(1)
-            else:
+            elif asteroid.collides_with(player):
                 player.life.removelife()
+                player.respawn()
+            
                 
             for shot in shots:
                 if asteroid.collides_with(shot):
@@ -64,8 +66,12 @@ def main():
                     log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
+                    
+                    if point.points >= NEXT_LIFE_SCORE:
+                        player.life.addlife()
+                        NEXT_LIFE_SCORE +=10
 
-        
+       
         for d in drawable:
             d.draw(screen)
 
@@ -73,7 +79,7 @@ def main():
     
 
         score_text = font.render(f"Points: {point.points}", True, "white")
-        life_text = font.render(f"Lives: {player.life.lifes}")
+        life_text = font.render(f"Lives: {player.life.lifes}",True,"white")
         life_rect = score_text.get_rect(topright=(SCREEN_WIDTH - 20, 40))
         text_rect = score_text.get_rect(topright=(SCREEN_WIDTH - 20, 20))
         screen.blit(score_text, text_rect)

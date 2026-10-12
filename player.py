@@ -1,5 +1,5 @@
 from circleshape import CircleShape
-from constans import LINE_WIDTH,PLAYER_TURN_SPEED,PLAYER_SPEED,PLAYER_SHOOT_COOLDOWN_SECONDS
+from constans import LINE_WIDTH,PLAYER_TURN_SPEED,PLAYER_SPEED,PLAYER_SHOOT_COOLDOWN_SECONDS,SCREEN_WIDTH,SCREEN_HEIGHT
 from shoot import Shot
 from lifes import Life
 import pygame
@@ -56,3 +56,8 @@ class Player(CircleShape):
         shoot = Shot(self.position.x,self.position.y)
         shoot.velocity = pygame.Vector2(0,1).rotate(self.rotation) * PLAYER_TURN_SPEED
         self.shoot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
+        
+        
+    def respawn(self):
+        self.position.x = SCREEN_WIDTH / 2
+        self.position.y = SCREEN_HEIGHT / 2
