@@ -33,6 +33,8 @@ def main():
     font = pygame.font.Font(None,36)
 
     asteroidfield = AsteroidField()
+    
+    next_life_score = NEXT_LIFE_SCORE
 
     x = SCREEN_WIDTH/2
     y = SCREEN_HEIGHT/2
@@ -67,9 +69,9 @@ def main():
                     shot.kill()
                     asteroid.split()
                     
-                    if point.points >= NEXT_LIFE_SCORE:
+                    if point.points >= next_life_score:
                         player.life.addlife()
-                        NEXT_LIFE_SCORE +=10
+                        next_life_score +=10
 
        
         for d in drawable:
